@@ -1,0 +1,45 @@
+.draggabletagspane {
+    -fx-skin: "com.physalix.jfx.skin.DraggableTagsPaneSkin";
+}
+
+.draggable-tag {
+    -fx-font: 12pt "Arial";
+    -fx-text-alignment: center;    
+}
+
+.tags-scrollpane, .tags-scroll {
+    -fx-background-color: orange;       
+}
+
+.draggable-tag, .tags-region {
+    -fx-background-color: transparent;
+}
+
+.closetag .button {
+    -fx-background-color: white, white;
+    -fx-background-radius: 16.4, 15;
+    -fx-border-radius: 20;
+    -fx-border-width: 1;
+    -fx-border-color: #D8D8D8;
+    -fx-padding: 0;
+    -fx-font-size: 0;
+}
+
+.closetag .button:focused {
+    -fx-background-color: -fx-focus-color, white;
+}
+
+.closetext {
+    -fx-stroke: #A4A4A4;
+    -fx-fill: #A4A4A4;
+    -fx-font-size: 7;
+}
+
+.closeicon {
+    -fx-stroke: #D8D8D8;
+    -fx-stroke-width: 2;
+}
+
+.closetag:hover {
+    -fx-effect: innershadow(gaussian, white, 15, 0, 0, 0);
+}
