@@ -44,8 +44,7 @@ public class Tag extends Region {
         label.setY(14);
         label.setText(name);
 
-        Rectangle rect = new Rectangle(
-                label.getLayoutBounds().getWidth() + 35, 25);
+        Rectangle rect = new Rectangle(label.getLayoutBounds().getWidth() + 35, 25);
         rect.setFill(Color.web("D8D8D8"));
         rect.setX(2);
         rect.setY(1);
@@ -53,8 +52,7 @@ public class Tag extends Region {
         rect.setArcHeight(10);
 
         Group group = new Group();
-        group.getChildren().addAll(rect, label,
-                closeButton(textCloseIcon(), actionHandler));
+        group.getChildren().addAll(rect, label, closeButton(textCloseIcon(), actionHandler));
 
         setPrefHeight(28);
         getChildren().addAll(group);
@@ -96,8 +94,7 @@ public class Tag extends Region {
      * @return
      */
     private Node textCloseIcon() {
-        return TextBuilder.create().text("x")
-                .styleClass("closetext").build();
+        return TextBuilder.create().text("x").styleClass("closetext").build();
     }
 
     /**
