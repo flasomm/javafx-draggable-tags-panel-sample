@@ -26,11 +26,20 @@ public class Main extends Application {
 
     private static final String STYLESHEET_PATH = "/styles/styles.css";
 
-    private static final ObservableList<String> data
-            = FXCollections.observableArrayList(
-                    "chocolate", "salmon", "gold", "coral", "darkorchid",
-                    "darkgoldenrod", "lightsalmon", "black", "rosybrown", "blue",
-                    "blueviolet", "brown");
+    private static final ObservableList<String> data = FXCollections.observableArrayList(
+        "chocolate", 
+        "salmon", 
+        "gold", 
+        "coral", 
+        "darkorchid",
+        "darkgoldenrod", 
+        "lightsalmon", 
+        "black", 
+        "rosybrown", 
+        "blue",
+        "blueviolet", 
+        "brown"
+    );
 
     private final ListView<String> listView = new ListView();
 
@@ -74,8 +83,7 @@ public class Main extends Application {
      */
     private final ListChangeListener<Tag> itemChangeListener = new ListChangeListener<Tag>() {
         @Override
-        public void onChanged(
-                ListChangeListener.Change<? extends Tag> c) {
+        public void onChanged(ListChangeListener.Change<? extends Tag> c) {
 
             while (c.next()) {
                 for (Tag tag : c.getRemoved()) {
@@ -95,24 +103,21 @@ public class Main extends Application {
      * modes supported by the gesture source are defined, and the data to be
      * transferred is placed onto the dragboard.
      */
-    private final EventHandler<MouseEvent> onDragListDetectedEventHandler
-            = new EventHandler<MouseEvent>() {
+    private final EventHandler<MouseEvent> onDragListDetectedEventHandler = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            // drag was detected, start drag-and-drop gesture
+            String item = listView.getItems().get(listView.getSelectionModel().getSelectedIndex());
 
-                @Override
-                public void handle(MouseEvent event) {
-                    // drag was detected, start drag-and-drop gesture
-                    String item = listView.getItems().get(listView.getSelectionModel().getSelectedIndex());
-
-                    if (item != null) {
-                        Dragboard db = listView.startDragAndDrop(TransferMode.COPY);
-
-                        ClipboardContent content = new ClipboardContent();
-                        content.putString(item);
-                        db.setContent(content);
-                        event.consume();
-                    }
-                }
-            };
+            if (item != null) {
+                Dragboard db = listView.startDragAndDrop(TransferMode.COPY);
+                ClipboardContent content = new ClipboardContent();
+                content.putString(item);
+                db.setContent(content);
+                event.consume();
+            }
+        }
+    };
 
 // ---------- ---------- ---------- ---------- ----------
     /**
