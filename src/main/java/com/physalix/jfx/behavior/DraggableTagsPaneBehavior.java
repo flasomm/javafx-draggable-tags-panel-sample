@@ -51,8 +51,7 @@ public class DraggableTagsPaneBehavior<T> extends BehaviorBase<DraggableTagsPane
      */
     private final ListChangeListener<Tag> dataChangeListener = new ListChangeListener<Tag>() {
         @Override
-        public void onChanged(
-                ListChangeListener.Change<? extends Tag> c) {
+        public void onChanged(ListChangeListener.Change<? extends Tag> c) {
 
             while (c.next()) {
                 tagsList.removeAll(c.getRemoved());
@@ -72,21 +71,19 @@ public class DraggableTagsPaneBehavior<T> extends BehaviorBase<DraggableTagsPane
      * target to drop the data. You specify which object accepts the data by
      * implementing the DRAG_OVER event handler.
      */
-    private final EventHandler<DragEvent> onDragOverTagsEventHandler
-            = new EventHandler<DragEvent>() {
+    private final EventHandler<DragEvent> onDragOverTagsEventHandler = new EventHandler<DragEvent>() {
 
-                @Override
-                public void handle(DragEvent event) {
-                    // data is dragged over the target 
-                    Dragboard db = event.getDragboard();
+        @Override
+        public void handle(DragEvent event) {
+            // data is dragged over the target 
+            Dragboard db = event.getDragboard();
 
-                    if (event.getGestureSource() != skin.getScrollPane()
-                    && db.hasString()) {
-                        event.acceptTransferModes(TransferMode.COPY);
-                    }
-                    event.consume();
-                }
-            };
+            if (event.getGestureSource() != skin.getScrollPane() && db.hasString()) {
+                event.acceptTransferModes(TransferMode.COPY);
+            }
+            event.consume();
+        }
+    };
 
     /**
      * Create the onDragDrop tags event. When the mouse button is released on
@@ -94,22 +91,19 @@ public class DraggableTagsPaneBehavior<T> extends BehaviorBase<DraggableTagsPane
      * transfer mode supported by the gesture source, then the DRAG_DROPPED
      * event is sent to the gesture target.
      */
-    private final EventHandler<DragEvent> onDragDropTagsEventHandler
-            = new EventHandler<DragEvent>() {
+    private final EventHandler<DragEvent> onDragDropTagsEventHandler = new EventHandler<DragEvent>() {
 
-                @Override
-                public void handle(DragEvent event) {
-                    Dragboard db = event.getDragboard();
+        @Override
+        public void handle(DragEvent event) {
+            Dragboard db = event.getDragboard();
 
-                    if (event.getGestureSource() != skin.getScrollPane()
-                    && db.hasString()) {
-                        event.acceptTransferModes(TransferMode.COPY);
-                        tagsList.add(new Tag(db.getString(),
-                                        new CloseTagEventHandler()));
-                    }
-                    event.consume();
-                }
-            };
+            if (event.getGestureSource() != skin.getScrollPane() && db.hasString()) {
+                event.acceptTransferModes(TransferMode.COPY);
+                tagsList.add(new Tag(db.getString(), new CloseTagEventHandler()));
+            }
+            event.consume();
+        }
+    };
 
     /**
      *
@@ -134,16 +128,13 @@ public class DraggableTagsPaneBehavior<T> extends BehaviorBase<DraggableTagsPane
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    Node tag = ((Node) event.getSource()).getParent()
-                            .getParent().getParent();
-
+                    Node tag = ((Node) event.getSource()).getParent().getParent().getParent();
                     skin.getTagsPane().getChildren().remove((Tag) tag);
                     // update tagsList
                     tagsList.remove((Tag) tag);
                 }
             });
         }
-
     }
 
 }
